@@ -21,18 +21,29 @@ class DetalhesActivity : AppCompatActivity() {
         }
 
     }
-    private fun recuperarDados(){
+    private fun recuperarDados() {
         inicializarComponentesInterface()
-        val gasolina = intent.getStringExtra("gasolina").toString()
-        val gasosa = gasolina.toDouble()
-        textResultGasolina.text = gasosa.toString()
 
-        val alcool = intent.getStringExtra("alcool").toString()
-        val alcoolNumber = alcool.toDouble()
-        textResultAlcool.text = alcoolNumber.toString()
+        if (intent.hasExtra("gasolina") && intent.hasExtra("alcool")) {
+            try {
+                val gasolina = intent.getStringExtra("gasolina").toString()
+                val gasolinaNumber = gasolina.toDouble()
+                textResultGasolina.text = gasolinaNumber.toString()
 
+                val alcool = intent.getStringExtra("alcool").toString()
+                val alcoolNumber = alcool.toDouble()
+                textResultAlcool.text = alcoolNumber.toString()
 
-
+                val resultado = intent.getStringExtra("resultado")
+                textResultado.text = resultado
+            } catch (e: NumberFormatException) {
+                // Lidar com a exceção (formato inválido da string)
+                // Pode ser útil exibir uma mensagem de erro ou tomar outra ação apropriada.
+            }
+        } else {
+            // Lida com o caso em que os extras não estão presentes
+            // Pode ser útil exibir uma mensagem de erro ou tomar outra ação apropriada.
+        }
     }
     private fun inicializarComponentesInterface() {
         textResultado = findViewById( R.id.text_resultado )

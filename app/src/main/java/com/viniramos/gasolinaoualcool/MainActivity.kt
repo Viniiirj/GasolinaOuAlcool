@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var textResultado: String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,14 +39,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun novaTela(){
-
+    private fun novaTela() {
         val intent = Intent(this, DetalhesActivity::class.java)
         intent.putExtra("gasolina", precoGasolina)
         intent.putExtra("alcool", precoAlcool)
-
-        startActivity( intent )
+        intent.putExtra("resultado", textResultado)
+        startActivity(intent)
     }
+
+
 
     private fun calcularMelhorPreco() {
 
@@ -60,8 +62,6 @@ class MainActivity : AppCompatActivity() {
             se(valorAlcool / valorGasolina) >= 0.7 é melhor utilizar gasolina
             senão é melhor utilizar alcool
              */
-            novaTela()
-
             val precoAlcoolDouble = precoAlcool.toDouble()
             val precoGasolinaDouble = precoGasolina.toDouble()
             val resultado = precoAlcoolDouble / precoGasolinaDouble
@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 "Alcool"
             }
+            novaTela()
 
         }
 
