@@ -12,7 +12,6 @@ import com.viniramos.gasolinaoualcool.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btnCalcular: Button
-    private lateinit var binding: ActivityMainBinding
 
     private lateinit var textInputGasolina: TextInputLayout
     private lateinit var editGasolina: TextInputEditText
