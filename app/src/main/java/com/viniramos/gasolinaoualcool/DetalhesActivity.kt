@@ -14,27 +14,30 @@ class DetalhesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes)
+        recuperarDados()
 
-        inicializarComponentesInterface()
         btnVoltar.setOnClickListener{
             finish()
         }
 
-//        val bundle = intent.extras
-//        if (bundle != null){
-//            val calculadora = if (Build.VERSION.SDK_INT >= 33) {
-//                bundle.getParcelable("calcularMelhorPreco", calcularMelhorPreco::class.java)
-//            } else {
-//                bundle.getParcelable("calcularMelhorPreco")
-//
-//            }
-//        }
     }
+    private fun recuperarDados(){
+        inicializarComponentesInterface()
+        val gasolina = intent.getStringExtra("gasolina").toString()
+        val gasosa = gasolina.toDouble()
+        textResultGasolina.text = gasosa.toString()
 
+        val alcool = intent.getStringExtra("alcool").toString()
+        val alcoolNumber = alcool.toDouble()
+        textResultAlcool.text = alcoolNumber.toString()
+
+
+
+    }
     private fun inicializarComponentesInterface() {
         textResultado = findViewById( R.id.text_resultado )
-        textResultGasolina = findViewById( R.id.text_result_gasolina )
-        textResultAlcool = findViewById( R.id.text_result_alcool )
+        textResultGasolina = findViewById( R.id.text_preco_gasolina )
+        textResultAlcool = findViewById( R.id.text_preco_alcool )
         btnVoltar = findViewById( R.id.btn_voltar )
 
     }

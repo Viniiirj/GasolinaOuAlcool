@@ -8,18 +8,27 @@ import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.viniramos.gasolinaoualcool.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btnCalcular: Button
+    private lateinit var binding: ActivityMainBinding
 
     private lateinit var textInputGasolina: TextInputLayout
     private lateinit var editGasolina: TextInputEditText
 
     private lateinit var textInputAlcool: TextInputLayout
     private lateinit var editAlcool: TextInputEditText
-    protected lateinit var textResutados: TextView
+
+
+    private lateinit var precoGasolina: String
+    private lateinit var precoAlcool: String
+
+    private lateinit var textResultado: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         inicializarComponentesInterface()
         btnCalcular.setOnClickListener{
@@ -29,9 +38,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    protected fun calcularMelhorPreco() {
-        val precoAlcool = editAlcool.text.toString()
-        val precoGasolina = editGasolina.text.toString()
+    private fun novaTela(){
+
+        val intent = Intent(this, DetalhesActivity::class.java)
+        intent.putExtra("gasolina", precoGasolina)
+        intent.putExtra("alcool", precoAlcool)
+
+        startActivity( intent )
+    }
+
+    private fun calcularMelhorPreco() {
+
+         precoAlcool = editAlcool.text.toString()
+         precoGasolina = editGasolina.text.toString()
 
         val resultadoValidacao = validarCampos(precoAlcool, precoGasolina)
 
@@ -41,16 +60,18 @@ class MainActivity : AppCompatActivity() {
             se(valorAlcool / valorGasolina) >= 0.7 é melhor utilizar gasolina
             senão é melhor utilizar alcool
              */
+            novaTela()
 
             val precoAlcoolDouble = precoAlcool.toDouble()
             val precoGasolinaDouble = precoGasolina.toDouble()
             val resultado = precoAlcoolDouble / precoGasolinaDouble
 
-            if (resultado >= 0.7){
-                textResutados.text= "Gasolina"
+            textResultado = if (resultado >= 0.7){
+                 "Gasolina"
             } else {
-                textResutados.text= "Alcool"
+                "Alcool"
             }
+
         }
 
     }
@@ -60,19 +81,17 @@ class MainActivity : AppCompatActivity() {
         textInputGasolina.error = null
         textInputAlcool.error = null
 
-        if ( precoAlcool.isEmpty()){
-            textInputAlcool.error = "Digite o preço do álcool"
-            return false
 
-        } else if ( precoGasolina.isEmpty() ){
+        if ( precoGasolina.isEmpty() ){
             textInputGasolina.error = "Digite o preço do gasolina"
             return false
 
+        } else if ( precoAlcool.isEmpty()){
+            textInputAlcool.error = "Digite o preço do álcool"
+            return false
+
         }
-        val intent = Intent(this, DetalhesActivity::class.java)
 
-
-        startActivity( intent )
 
         return true
 
@@ -87,7 +106,6 @@ class MainActivity : AppCompatActivity() {
 
         btnCalcular = findViewById( R.id.btn_calcular )
 
-//        textResutado = findViewById( R.id.text_resultado )
     }
 
 

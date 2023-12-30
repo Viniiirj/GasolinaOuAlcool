@@ -35,7 +35,7 @@
         android:id="@+id/text_result_gasolina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preço Gasolina: R$0.00"
+        android:text="Preço Gasolina: R$"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Preço Álcool: R$0.00"
+        android:text="Preço Álcool: R$"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/text_result_gasolina" />
@@ -101,5 +101,23 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_resultado" />
+
+    <TextView
+        android:id="@+id/text_preco_gasolina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.00"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/text_result_gasolina"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <TextView
+        android:id="@+id/text_preco_alcool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.00"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/text_result_alcool"
+        app:layout_constraintTop_toTopOf="@+id/text_result_alcool" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
