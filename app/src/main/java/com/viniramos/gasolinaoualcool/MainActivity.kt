@@ -33,16 +33,16 @@ class MainActivity : AppCompatActivity() {
         inicializarComponentesInterface()
         btnCalcular.setOnClickListener{
            calcularMelhorPreco()
-
-
         }
     }
-
+//Passar parâmetros para nova tela
     private fun novaTela() {
         val intent = Intent(this, DetalhesActivity::class.java)
         intent.putExtra("gasolina", precoGasolina)
         intent.putExtra("alcool", precoAlcool)
         intent.putExtra("resultado", textResultado)
+
+    //Iniciar uma nova tela
         startActivity(intent)
     }
 
@@ -71,9 +71,7 @@ class MainActivity : AppCompatActivity() {
                 "Alcool"
             }
             novaTela()
-
         }
-
     }
 
     private fun validarCampos(precoAlcool: String, precoGasolina: String): Boolean {
@@ -85,16 +83,11 @@ class MainActivity : AppCompatActivity() {
         if ( precoGasolina.isEmpty() ){
             textInputGasolina.error = "Digite o preço do gasolina"
             return false
-
         } else if ( precoAlcool.isEmpty()){
             textInputAlcool.error = "Digite o preço do álcool"
             return false
-
         }
-
-
         return true
-
     }
 
     private fun inicializarComponentesInterface() {

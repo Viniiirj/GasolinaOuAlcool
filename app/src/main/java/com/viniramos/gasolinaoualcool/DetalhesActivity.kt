@@ -23,6 +23,7 @@ class DetalhesActivity : AppCompatActivity() {
     }
     private fun recuperarDados() {
         inicializarComponentesInterface()
+        //Para recuperar os dados na outra activity
 
         if (intent.hasExtra("gasolina") && intent.hasExtra("alcool")) {
             try {
